@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Users\Michael\Documents\Android Studio Projects\MathdokuSolver\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.0.0\jars\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="d84409890828e07d344a3b9b1da545dba9897b51">
+        <dex dex="C:\Users\Michael\Documents\Android Studio Projects\MathdokuSolver\app\build\intermediates\pre-dexed\release\classes-b463bdbff50d8023aeada01ce9706e4c6b1f9a94.jar" />
+    </item>
+    <item
+        jar="E:\AndroidSDK\sdk\extras\android\m2repository\com\android\support\support-annotations\22.2.0\support-annotations-22.2.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
+        <dex dex="C:\Users\Michael\Documents\Android Studio Projects\MathdokuSolver\app\build\intermediates\pre-dexed\release\support-annotations-22.2.0-66809c7161c4a036c457c002aefe9cc7acce535c.jar" />
+    </item>
+    <item
+        jar="C:\Users\Michael\.gradle\caches\modules-2\files-2.1\com.google.guava\guava\18.0\cce0823396aa693798f8882e64213b1772032b09\guava-18.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="cce0823396aa693798f8882e64213b1772032b09">
+        <dex dex="C:\Users\Michael\Documents\Android Studio Projects\MathdokuSolver\app\build\intermediates\pre-dexed\release\guava-18.0-12b23f7d0c05ba4ec7593005f2354a43976f90df.jar" />
+    </item>
+    <item
+        jar="C:\Users\Michael\Documents\Android Studio Projects\MathdokuSolver\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\jars\libs\internal_impl-22.2.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
+        <dex dex="C:\Users\Michael\Documents\Android Studio Projects\MathdokuSolver\app\build\intermediates\pre-dexed\release\internal_impl-22.2.0-ed376b0d1db1129e181e753c4b56ad879ff71ff5.jar" />
+    </item>
+    <item
+        jar="C:\Users\Michael\Documents\Android Studio Projects\MathdokuSolver\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
+        <dex dex="C:\Users\Michael\Documents\Android Studio Projects\MathdokuSolver\app\build\intermediates\pre-dexed\release\classes-a1703b3a2724386887e57b1adad65f6c85e7d8ce.jar" />
+    </item>
+    <item
+        jar="C:\Users\Michael\Documents\Android Studio Projects\MathdokuSolver\app\build\intermediates\exploded-aar\com.android.support\gridlayout-v7\22.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4c72b7305d9c42d7729d66694dc984f69896a844">
+        <dex dex="C:\Users\Michael\Documents\Android Studio Projects\MathdokuSolver\app\build\intermediates\pre-dexed\release\classes-3bde0ecb16a6ae707de996dd8e63735f615814ac.jar" />
+    </item>
+
+</items>

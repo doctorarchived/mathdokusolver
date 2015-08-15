@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:grid="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+
+    <com.bradym.android.mathdokusolver.PuzzleGrid
+
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        grid:columnCount="6"
+        grid:rowCount="6"
+        android:id="@+id/trueGrid"
+
+        android:layout_centerInParent="true"
+
+        android:layout_marginBottom ="16dp"
+        android:layout_marginLeft ="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginTop="8dp"
+        android:padding="3dp"
+
+        android:background="@drawable/border"
+
+
+        >
+
+
+    </com.bradym.android.mathdokusolver.PuzzleGrid>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:minWidth="88dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/undoButton"
+        android:src="@mipmap/undo"
+        android:layout_below="@+id/trueGrid"
+        android:layout_alignStart="@+id/trueGrid"
+        android:onClick="onUndo"
+        />
+
+
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:minWidth="88dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/redoButton"
+        android:src="@mipmap/redo"
+        android:layout_below="@+id/trueGrid"
+        android:layout_alignEnd="@+id/trueGrid"
+        android:onClick="onRedo"
+        />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:minWidth="88dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/solveButton"
+        android:src="@mipmap/solve"
+        android:layout_alignBottom="@id/undoButton"
+        android:layout_alignTop="@id/redoButton"
+        android:layout_centerHorizontal="true"
+        android:onClick="onSolveClick"
+        />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="88dp"
+        android:id="@+id/clearButton"
+        android:src="@mipmap/erase"
+        android:layout_above="@+id/trueGrid"
+        android:layout_alignEnd="@+id/trueGrid"
+        android:background="@android:color/transparent"
+        android:onClick="onClearClick"/>
+
+
+</RelativeLayout>
