@@ -11,18 +11,16 @@ import com.bradym.android.mathdokusolver.logic.GACSolver;
  *
  * Async Task to initiate GAC solve.
  */
-public class SolverTask extends AsyncTask<GACSolver, Void, Long> implements DialogInterface.OnCancelListener {
+class SolverTask extends AsyncTask<GACSolver, Void, Long> implements DialogInterface.OnCancelListener {
 
-    ProgressDialog pg;
-    PuzzleActivity activity;
+    private final ProgressDialog pg;
+    private final PuzzleActivity activity;
 
     public SolverTask(PuzzleActivity activity) {
         this.pg = new ProgressDialog(activity);
         pg.setOnCancelListener(this);
         this.activity = activity;
     }
-
-    GACSolver solver;
 
     @Override
     protected void onPreExecute() {
@@ -33,7 +31,7 @@ public class SolverTask extends AsyncTask<GACSolver, Void, Long> implements Dial
 
     @Override
     protected Long doInBackground(GACSolver... params) {
-        solver = params[0];
+        GACSolver solver = params[0];
         return solver.solve();
     }
 

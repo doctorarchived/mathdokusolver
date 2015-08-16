@@ -3,10 +3,13 @@ package com.bradym.android.mathdokusolver.logic.constraint;
 import com.bradym.android.mathdokusolver.logic.Variable;
 
 import java.util.Collection;
-import java.util.HashSet;
 
 /**
- * Created by Michael on 7/16/2015.
+
+ * Abstract class for generic arithmetic constraints.
+ * Supports a constraint value and keeps track of the cumulative max/min of the remaining unassigned
+ * variables. It is up to the child class to implement the operation on how to calculate the
+ * cumulative max/min.
  */
 
 
@@ -18,7 +21,7 @@ public abstract class ArithmeticConstraint extends Constraint {
     private int cumulativeMax;
     private int cumulativeMin;
 
-    public ArithmeticConstraint(Collection<Variable> scope, int constraint, int identity) {
+    ArithmeticConstraint(Collection<Variable> scope, int constraint, int identity) {
         super(scope);
         this.constraint = constraint;
         this.identity = identity;
@@ -90,11 +93,11 @@ public abstract class ArithmeticConstraint extends Constraint {
     }
 
 
-    protected int getCumulativeMax() {
+    int getCumulativeMax() {
         return cumulativeMax;
     }
 
-    protected int getCumulativeMin() {
+    int getCumulativeMin() {
         return cumulativeMin;
     }
 

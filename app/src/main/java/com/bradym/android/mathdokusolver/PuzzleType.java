@@ -1,7 +1,7 @@
 package com.bradym.android.mathdokusolver;
 
 /**
- * Created by Michael on 2015-08-13.
+ * Enum for various puzzle types
  */
 public enum PuzzleType {
     KENKEN, SUDOKU

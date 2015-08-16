@@ -2,7 +2,7 @@ package com.bradym.android.mathdokusolver;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayout;
 import android.view.HapticFeedbackConstants;
 import android.view.View;
@@ -30,29 +30,27 @@ import java.util.Set;
  *
  * Activity that contains grid
  */
-public class PuzzleActivity extends ActionBarActivity implements ConstraintDialog.TrueDialogListener {
+public class PuzzleActivity extends AppCompatActivity implements ConstraintDialog.TrueDialogListener {
 
     private PuzzleType mode = PuzzleType.KENKEN;
 
-    int num_col = 6;
-    PuzzleGrid puzzleGrid;
-    List<PuzzleCell> puzzleCells;
-    List<Variable> variables;
+    private int num_col = 6;
+    private PuzzleGrid puzzleGrid;
+    private List<PuzzleCell> puzzleCells;
+    private List<Variable> variables;
 
-    Deque<State> history;
-    Deque<State> undoHistory;
+    private Deque<State> history;
+    private Deque<State> undoHistory;
 
-    ImageButton solverButton;
-    ImageButton undoButton;
-    ImageButton redoButton;
-    ImageButton clearButton;
+    private ImageButton solverButton;
+    private ImageButton undoButton;
+    private ImageButton redoButton;
+    private ImageButton clearButton;
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
         ProductConstraint.op  = getString(R.string.times);
         MinusConstraint.op = getString(R.string.minus);
         PlusConstraint.op = getString(R.string.plus);
@@ -148,7 +146,7 @@ public class PuzzleActivity extends ActionBarActivity implements ConstraintDialo
 
     }
 
-    public void newConstraint(int type, int val, int ... vars) {
+    private void newConstraint(int type, int val, int... vars) {
         Constraint constraint = null;
         List<Variable> tVars = new ArrayList<>();
         for (int v : vars) {
@@ -176,7 +174,7 @@ public class PuzzleActivity extends ActionBarActivity implements ConstraintDialo
         }
     }
 
-    public void secret() {
+    private void secret() {
         //74226
 
         newConstraint(2, 1, 0, 1);
@@ -218,7 +216,7 @@ public class PuzzleActivity extends ActionBarActivity implements ConstraintDialo
         newConstraint(2, 7, 79, 80);
     }
 
-    public void secret2() {
+    private void secret2() {
         //37387
         newConstraint(0, 8, 0, 9);
         newConstraint(1, 192, 1, 2, 3, 4);
@@ -252,7 +250,7 @@ public class PuzzleActivity extends ActionBarActivity implements ConstraintDialo
         newConstraint(0, 15, 75, 76, 77);
     }
 
-    public void secret3() {
+    private void secret3() {
         //74049
         newConstraint(1, 336, 0, 1, 2);
         newConstraint(0, 15, 3, 4 ,5 ,6 ,7);
@@ -290,7 +288,7 @@ public class PuzzleActivity extends ActionBarActivity implements ConstraintDialo
         newConstraint(2, 4, 79, 80);
     }
 
-    public void secret4() {
+    private void secret4() {
         //74063
         newConstraint(1, 1008, 0, 1, 10, 19);
         newConstraint(0, 6, 2, 3, 4);
@@ -328,7 +326,7 @@ public class PuzzleActivity extends ActionBarActivity implements ConstraintDialo
         newConstraint(1, 63, 79, 80);
     }
 
-    public void secret5() {
+    private void secret5() {
         //73916
         newConstraint(0, 6, 0, 1);
         newConstraint(1, 168, 2, 3, 4);
@@ -367,7 +365,7 @@ public class PuzzleActivity extends ActionBarActivity implements ConstraintDialo
         newConstraint(2, 7, 76, 77);
     }
 
-    public void secret6() {
+    private void secret6() {
         newConstraint(2, 2, 0, 4);
         newConstraint(1, 6, 1, 2);
         newConstraint(0, 8, 3, 6, 7);
@@ -378,7 +376,7 @@ public class PuzzleActivity extends ActionBarActivity implements ConstraintDialo
         newConstraint(0, 3, 15);
     }
 
-    public void adjustButtons(boolean enable, ImageButton... buttons) {
+    private void adjustButtons(boolean enable, ImageButton... buttons) {
         for (ImageButton b : buttons) {
             if (enable) {
                 b.setClickable(true);
@@ -526,7 +524,7 @@ public class PuzzleActivity extends ActionBarActivity implements ConstraintDialo
         undoHistory.clear();
     }
 
-    public void checkSolverButton() {
+    private void checkSolverButton() {
         boolean allConstrained = true;
         for (Variable tv : variables) {
             if (tv.constraints.size() != 3) {
@@ -541,7 +539,7 @@ public class PuzzleActivity extends ActionBarActivity implements ConstraintDialo
         }
     }
 
-    public void checkClearButton() {
+    private void checkClearButton() {
         if (puzzleGrid.getActiveConstraints().isEmpty()) {
             adjustButtons(false, clearButton);
         } else {
@@ -549,7 +547,7 @@ public class PuzzleActivity extends ActionBarActivity implements ConstraintDialo
         }
     }
 
-    public void fullReset() {
+    private void fullReset() {
         Set<Constraint> reset = new HashSet<>();
         for (Variable variable : variables) {
             variable.reset();

@@ -18,10 +18,10 @@ import com.bradym.android.mathdokusolver.logic.Variable;
  */
 public class PuzzleCell extends RelativeLayout {
 
-    private Paint m2BorderPaint = new Paint();
-    private Paint m1BorderPaint = new Paint();
-    private Paint m0BorderPaint = new Paint();
-    private Paint[] paints = new Paint[3];
+    private final Paint m2BorderPaint = new Paint();
+    private final Paint m1BorderPaint = new Paint();
+    private final Paint m0BorderPaint = new Paint();
+    private final Paint[] paints = new Paint[3];
 
     private Variable var;
     private TextView topLeftView;
@@ -88,10 +88,6 @@ public class PuzzleCell extends RelativeLayout {
 
     }
 
-    public void setVariable(Variable var) {
-        this.var = var;
-    }
-
     public void setAttributes(Variable var, int index) {
         this.var = var;
         this.index = index;
@@ -107,10 +103,6 @@ public class PuzzleCell extends RelativeLayout {
 
     public Variable getVariable() {
         return var;
-    }
-
-    public void setValue(String s) {
-        this.centreView.setText(s);
     }
 
     public void refreshValue() {
@@ -131,11 +123,11 @@ public class PuzzleCell extends RelativeLayout {
 
     }
 
-    public void setBorders(int right, int up ,int left, int down) {
-        this.right = right;
-        this.up = up;
-        this.left = left;
-        this.down = down;
+    public void resetBorders() {
+        this.right = 0;
+        this.up = 0;
+        this.left = 0;
+        this.down = 0;
     }
 
 

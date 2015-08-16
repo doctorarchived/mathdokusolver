@@ -2,13 +2,12 @@ package com.bradym.android.mathdokusolver.logic.constraint;
 
 import com.bradym.android.mathdokusolver.logic.Variable;
 
-import java.util.ArrayDeque;
 import java.util.Collection;
-import java.util.Deque;
 import java.util.HashSet;
 
 /**
- * Created by Michael on 7/16/2015.
+ * Generic constraint that requires the basic functionality to be implemented in child classes.
+ *
  */
 public abstract class Constraint {
 
@@ -16,7 +15,7 @@ public abstract class Constraint {
     private boolean enabled = false;
     public boolean bordered = true;
 
-    public Constraint(Collection<Variable> scope) {
+    Constraint(Collection<Variable> scope) {
         this.scope = new HashSet<>(scope.size());
         this.scope.addAll(scope);
         enable();
@@ -64,7 +63,7 @@ public abstract class Constraint {
         StringBuilder sb = new StringBuilder();
         sb.append("[ ");
         for (Variable v : scope) {
-            sb.append(v.index + " ");
+            sb.append(v.index).append(" ");
         }
         sb.append("]");
 

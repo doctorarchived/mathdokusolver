@@ -9,7 +9,8 @@ import java.util.Deque;
 import java.util.List;
 
 /**
- * Created by Michael on 7/16/2015.
+ * Variable object to be used in the solving process.
+ * Keeps track of attached constraints, cell, and past domains.
  */
 public final class Variable {
 
@@ -69,10 +70,11 @@ public final class Variable {
         boolean valid = true;
 
         for (Constraint constraint : constraints) {
-            valid &= constraint.validateAssignment(this, val);
-            if (!valid) break;
+            if (!constraint.validateAssignment(this, val)) {
+                valid = false;
+                break;
+            }
         }
-
         if (valid) {
             domainHistory.addLast(domain);
             domain = new Domain(1 << (val - 1));
@@ -94,15 +96,6 @@ public final class Variable {
 
     public int value() {
         return domain.value;
-    }
-
-    public void setValue(int value) {
-        domain.value = value;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        return ((Variable) o).index == index;
     }
 
     public int max() {

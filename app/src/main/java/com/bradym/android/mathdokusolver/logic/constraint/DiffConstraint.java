@@ -3,15 +3,14 @@ package com.bradym.android.mathdokusolver.logic.constraint;
 import com.bradym.android.mathdokusolver.logic.Variable;
 
 import java.util.Arrays;
-import java.util.BitSet;
 import java.util.Collection;
 
 
 public final class DiffConstraint extends Constraint {
 
     //final BitSet bitSet;
-    int placed;
-    int[] remaining;
+    private int placed;
+    private int[] remaining;
 
 
     /*

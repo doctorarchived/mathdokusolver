@@ -21,6 +21,7 @@ import java.util.HashSet;
  * Grid that represents the puzzle stage with touch interactions allowing the manipulation of constraints
  *
  */
+@SuppressWarnings("SuspiciousNameCombination")
 public class PuzzleGrid extends GridLayout {
 
     private enum SELECTION {
@@ -28,16 +29,16 @@ public class PuzzleGrid extends GridLayout {
         CONSTRAINT
     }
 
-    HashSet<PuzzleCell> selected = new HashSet<>();
-    Constraint selectedConstraint = null;
+    private final HashSet<PuzzleCell> selected = new HashSet<>();
+    private Constraint selectedConstraint = null;
     boolean editable = true;
 
-    Activity context;
-    FragmentManager fm;
+    private Activity context;
+    private FragmentManager fm;
 
     private SELECTION selectionMode = SELECTION.CELL;
     private PuzzleType puzzle = PuzzleType.KENKEN;
-    private HashSet<Constraint> activeConstraints = new HashSet<>();
+    private final HashSet<Constraint> activeConstraints = new HashSet<>();
 
     public PuzzleGrid(Context context) {
         this(context, null, 0);
@@ -55,15 +56,9 @@ public class PuzzleGrid extends GridLayout {
         }
     }
 
-    public void setPuzzle(PuzzleType type) {
+    public void setPuzzle(@SuppressWarnings("SameParameterValue") PuzzleType type) {
         this.puzzle = type;
     }
-
-    public void emptyActiveConstraints() {
-        activeConstraints.clear();
-    }
-
-
 
     @Override
     public boolean onTouchEvent(@NonNull MotionEvent event) {
@@ -79,14 +74,14 @@ public class PuzzleGrid extends GridLayout {
                         case CELL:
                             if (!selected.isEmpty()) {
                                 ConstraintDialog sd = new ConstraintDialog();
-                                sd.addParameters(selected, State.ADD_CONSTRAINT, puzzle);
+                                sd.addConstraint(selected, puzzle);
                                 sd.show(fm, "Begin add");
                             }
                             break;
                         case CONSTRAINT:
                             if (selectedConstraint != null) {
                                 ConstraintDialog sd = new ConstraintDialog();
-                                sd.addParameters(selectedConstraint, State.EDIT_CONSTRAINT, puzzle);
+                                sd.editConstraint(selectedConstraint, puzzle);
                                 sd.show(fm, "Begin edit");
                             }
                             break;
@@ -163,17 +158,11 @@ public class PuzzleGrid extends GridLayout {
         return activeConstraints;
     }
 
-    public void addConstraint(Constraint constraint, boolean addToActive) {
-        if (addToActive) {
-            activeConstraints.add(constraint);
-        }
+    private PuzzleCell getTopLeftCell(Constraint constraint, int num_col) {
 
-        constraint.enable();
         ArrayList<PuzzleCell> nVars = new ArrayList<>(constraint.scope.size());
         PuzzleCell min = null;
-        int num_col = getColumnCount();
         for (Variable var : constraint.scope) {
-
             PuzzleCell cell = var.cell;
             int i = cell.getIndex();
             if (min == null || i < min.getIndex()) {
@@ -204,8 +193,17 @@ public class PuzzleGrid extends GridLayout {
                 nVars.add(cell);
                 cell.invalidate();
             }
-
         }
+        return min;
+    }
+
+    public void addConstraint(Constraint constraint, boolean addToActive) {
+        if (addToActive) {
+            activeConstraints.add(constraint);
+        }
+        constraint.enable();
+
+        PuzzleCell min = getTopLeftCell(constraint, getColumnCount());
         if (min != null) {
             min.setConstraintString(constraint.cellString());
         }
@@ -222,7 +220,7 @@ public class PuzzleGrid extends GridLayout {
 
         for (Variable tv : constraint.scope) {
             PuzzleCell cell = tv.cell;
-            if (constraint.bordered) cell.setBorders(0, 0, 0, 0);
+            if (constraint.bordered) cell.resetBorders();
             cell.setConstraintString("");
             cell.invalidate();
         }

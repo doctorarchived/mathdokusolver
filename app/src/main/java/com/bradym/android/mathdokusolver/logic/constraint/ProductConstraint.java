@@ -5,7 +5,7 @@ import com.bradym.android.mathdokusolver.logic.Variable;
 import java.util.Collection;
 
 /**
- * Created by Michael on 7/20/2015.
+ * Product constraint.
  */
 public class ProductConstraint extends CommutativeConstraint {
 

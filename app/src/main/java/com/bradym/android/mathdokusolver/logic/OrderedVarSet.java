@@ -8,11 +8,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by Michael on 2015-08-06.
+ * Keeps a set of variables ordered according to a provided key. Allows fast updating of keys.
  */
-public class OrderedVarSet {
+class OrderedVarSet {
 
-    private final int MAX_SIZE = 16;
     private final Map<Variable, Integer> indexMap;
     private final List<HashSet<Variable>> map;
 
@@ -22,6 +21,7 @@ public class OrderedVarSet {
     public OrderedVarSet() {
         indexMap = new HashMap<>();
         map = new ArrayList<>();
+        int MAX_SIZE = 16;
         for (int i = 0; i < MAX_SIZE; i++) {
             map.add(new HashSet<Variable>());
         }
@@ -42,7 +42,7 @@ public class OrderedVarSet {
 
     public Variable pollMin() {
         for (int i = 0; i < map.size(); i++) {
-            HashSet hashSet = map.get(i);
+            HashSet<Variable> hashSet = map.get(i);
             if (!hashSet.isEmpty()) {
                 Iterator<Variable> iterator = hashSet.iterator();
                 Variable var = iterator.next();
@@ -53,15 +53,6 @@ public class OrderedVarSet {
             }
         }
         return null;
-    }
-
-    public void remove(Variable variable) {
-        int index = indexMap.remove(variable);
-        map.get(index).remove(variable);
-        size--;
-        if (index > max) {
-            resetMax();
-        }
     }
 
     public void add(Variable var, int key) {
@@ -89,10 +80,10 @@ public class OrderedVarSet {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (int i = max; i >= 0; i--) {
-            Iterator<Variable> iterator = map.get(i).iterator();
-            while (iterator.hasNext()) {
-                sb.append(iterator.next().index + " ");
+            for (Variable v : map.get(i)) {
+                sb.append(v.index).append(" ");
             }
+
         }
         return sb.toString().trim();
     }

@@ -6,14 +6,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class State {
+class State {
 
     public static final int ADD_CONSTRAINT = 0x0;
     public static final int EDIT_CONSTRAINT = 0x1;
     public static final int DELETE_CONSTRAINT = 0x2;
 
     private int action;
-    private List<Constraint> constraints = new ArrayList<>();
+    private final List<Constraint> constraints = new ArrayList<>();
 
     /*
     If action is ADD_CONSTRAINT, constraints is an array of all constraints that have been added
@@ -42,8 +42,4 @@ public class State {
     public void addConstraints(Constraint ... constraints) {
         this.constraints.addAll(Arrays.asList(constraints));
     }
-
-
-
-
 }

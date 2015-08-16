@@ -5,24 +5,19 @@ import com.bradym.android.mathdokusolver.logic.constraint.Constraint;
 import com.google.common.collect.ForwardingQueue;
 
 import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Queue;
 import java.util.Set;
-import java.util.TreeMap;
-import java.util.TreeSet;
 
 /**
- * Created by Michael on 7/26/2015.
+ * A CSP solver using the Generalized Arc Consistency algorithm.
  */
 public class GACSolver {
 
-    private SetQueue GACQueue;
-    private OrderedVarSet variables;
+    private final SetQueue GACQueue;
+    private final OrderedVarSet variables;
 
     public GACSolver(Collection<Variable> variables, PuzzleType puzzle) {
         this.variables = new OrderedVarSet();
@@ -45,7 +40,7 @@ public class GACSolver {
         return success ? duration : -1L;
     }
 
-    public boolean GAC(int level) {
+    private boolean GAC(int level) {
         if (variables.isEmpty()) {
             return true;
         }
@@ -74,7 +69,7 @@ public class GACSolver {
         return false;
     }
 
-    public boolean enforceGAC(Set<Variable> alteredVars) {
+    private boolean enforceGAC(Set<Variable> alteredVars) {
         Constraint constraint;
         while ((constraint = GACQueue.poll()) != null) {
 
@@ -115,26 +110,22 @@ public class GACSolver {
 
     private class SetQueue extends ForwardingQueue<Constraint> {
 
-        private HashSet<Constraint> membership = new HashSet<>();
-        private Queue<Constraint> queue = new ArrayDeque<>();
+        private final HashSet<Constraint> membership = new HashSet<>();
+        private final Queue<Constraint> queue = new ArrayDeque<>();
 
         @Override
-        protected Queue delegate() {
+        protected Queue<Constraint> delegate() {
             return queue;
         }
 
         @Override
         public boolean offer(Constraint o) {
-            if (!membership.contains(o))
-                return super.offer(o);
-            return false;
+            return !membership.contains(o) && super.offer(o);
         }
 
         @Override
         public boolean add(Constraint o) {
-            if (!membership.contains(o))
-                return super.add(o);
-            return false;
+            return !membership.contains(o) && super.add(o);
         }
 
         @Override

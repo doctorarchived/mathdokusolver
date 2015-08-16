@@ -6,7 +6,8 @@ import java.util.Collection;
 import java.util.Map;
 
 /**
- * Created by Michael on 7/17/2015.
+ * Being under the InverseConstraint, it requires that op be implemented to be the inverse of
+ * subtraction => addition.
  */
 public class MinusConstraint extends InverseConstraint {
 

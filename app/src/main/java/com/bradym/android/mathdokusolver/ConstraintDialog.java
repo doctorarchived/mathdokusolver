@@ -42,31 +42,26 @@ public class ConstraintDialog extends DialogFragment implements View.OnClickList
 
     private PuzzleType mode = PuzzleType.KENKEN;
 
-    Button plusButton;
-    Button minusButton;
-    Button timesButton;
-    Button divButton;
+    private Button plusButton;
+    private Button minusButton;
+    private Button timesButton;
+    private Button divButton;
 
-    ImageButton trashButton;
-
-    private int action;
     private Constraint prevConstraint;
     private State newState = null;
 
-    public void addParameters(HashSet<PuzzleCell> scope, int action, PuzzleType puzzleType) {
+    public void addConstraint(HashSet<PuzzleCell> scope, PuzzleType puzzleType) {
         for (PuzzleCell tc : scope) {
             this.scope.add(tc.getVariable());
         }
         this.cells = scope;
-        this.action = action;
-        this.newState = new State(action);
+        this.newState = new State(State.ADD_CONSTRAINT);
         this.mode = puzzleType;
     }
 
-    public void addParameters(Constraint constraint, int action, PuzzleType puzzleType) {
+    public void editConstraint(Constraint constraint, PuzzleType puzzleType) {
         this.prevConstraint = constraint;
-        this.action = action;
-        this.newState = new State(action, constraint);
+        this.newState = new State(State.EDIT_CONSTRAINT, constraint);
         this.scope = constraint.scope;
         this.mode = puzzleType;
     }
@@ -107,7 +102,7 @@ public class ConstraintDialog extends DialogFragment implements View.OnClickList
         divButton = (Button) inflated.findViewById(R.id.dialogButtonDiv);
         divButton.setOnClickListener(this);
 
-        trashButton = (ImageButton) inflated.findViewById(R.id.deleteButton);
+        ImageButton trashButton = (ImageButton) inflated.findViewById(R.id.deleteButton);
         trashButton.setOnClickListener(this);
 
         if (mode == PuzzleType.SUDOKU) {
@@ -119,17 +114,16 @@ public class ConstraintDialog extends DialogFragment implements View.OnClickList
             adjustButtons(false, plusButton, timesButton, divButton, minusButton);
         }
 
-        if (action != State.EDIT_CONSTRAINT) {
+        if (newState.getAction() != State.EDIT_CONSTRAINT) {
             adjustButtons(false, trashButton);
         }
 
         inflated.findViewById(R.id.dialogButtonUndo).setOnClickListener(this);
 
-        Dialog d = builder.setView(inflated).create();
-        return d;
+        return builder.setView(inflated).create();
     }
 
-    public void adjustButtons(boolean enable, Button ... buttons) {
+    private void adjustButtons(boolean enable, Button... buttons) {
         for (Button b : buttons) {
             if (enable) {
                 b.setClickable(true);
@@ -142,7 +136,7 @@ public class ConstraintDialog extends DialogFragment implements View.OnClickList
         }
     }
 
-    public void adjustButtons(boolean enable, ImageButton ... buttons) {
+    private void adjustButtons(boolean enable, ImageButton... buttons) {
         for (ImageButton b : buttons) {
             if (enable) {
                 b.setClickable(true);
@@ -251,13 +245,12 @@ public class ConstraintDialog extends DialogFragment implements View.OnClickList
 
     @Override
     public void dismiss() {
-        switch (action) {
+        switch (newState.getAction()) {
             case State.EDIT_CONSTRAINT:
+            case State.DELETE_CONSTRAINT:
                 for (Variable var : prevConstraint.scope) {
                     var.cell.setBackgroundColor(Color.TRANSPARENT);
                 }
-                break;
-            case State.DELETE_CONSTRAINT:
                 break;
             case State.ADD_CONSTRAINT:
                 for (PuzzleCell tc : cells) {

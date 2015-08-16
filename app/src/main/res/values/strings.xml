@@ -8,10 +8,6 @@
     <string name="times">\u00D7</string>
     <string name="div">\u00F7</string>
     <string name="minus">\u2212</string>
-    <string name="Cancel">Close</string>
-    <string name="equals"></string>
-    <string name="undo">\u2326</string>
-    <string name="ALLDIFF"></string>
 
     <string name="x4">4 x 4</string>
     <string name="x5">5 x 5</string>
@@ -19,6 +15,16 @@
     <string name="x7">7 x 7</string>
     <string name="x8">8 x 8</string>
     <string name="x9">9 x 9</string>
+    <string name="SUDOKU">SUDOKU</string>
+
+    <string name="UNDO">UNDO</string>
+    <string name="REDO">REDO</string>
+    <string name="SOLVE">SOLVE</string>
+    <string name="CLEAR">CLEAR</string>
+    <string name="BACKSPACE">BACKSPACE</string>
+    <string name="DELETE">DELETE</string>
+
+
 
     <string name="GRID_SELECT">Select Grid Size</string>
 

@@ -6,7 +6,8 @@ import java.util.Collection;
 import java.util.Map;
 
 /**
- * Created by Michael on 7/25/2015.
+ * Being under the InverseConstraint, it requires that op be implemented to be the inverse of
+ * division => multiplication.
  */
 public class DivConstraint extends InverseConstraint {
 

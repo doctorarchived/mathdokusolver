@@ -1,16 +1,12 @@
 package com.bradym.android.mathdokusolver.logic.constraint;
 
-import com.bradym.android.mathdokusolver.logic.OrderedVarSet;
 import com.bradym.android.mathdokusolver.logic.Variable;
 
 import java.util.ArrayDeque;
 import java.util.Collection;
-import java.util.Comparator;
 import java.util.Deque;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.TreeSet;
 
 
 /*
@@ -23,9 +19,9 @@ track of all current possible values the constraint can hold.
 public abstract class InverseConstraint extends ArithmeticConstraint {
 
     private Map<Variable, IntPair> currentValues;
-    private Deque<Map<Variable, IntPair>> valuesHistory;
+    private final Deque<Map<Variable, IntPair>> valuesHistory;
 
-    public InverseConstraint(Collection<Variable> scope, int constraint, int identity) {
+    InverseConstraint(Collection<Variable> scope, int constraint, int identity) {
         super(scope, constraint, identity);
 
         currentValues = new HashMap<>();
@@ -80,7 +76,7 @@ public abstract class InverseConstraint extends ArithmeticConstraint {
         return super.toString() + " CURRENT VALUES " + currentValues.toString();
     }
 
-    protected Map<Variable, IntPair> updateCurrentValue(Variable var, int value) {
+    private Map<Variable, IntPair> updateCurrentValue(Variable var, int value) {
         Map<Variable, IntPair> newMap = new HashMap<>();
         for (Map.Entry<Variable, IntPair> entry : currentValues.entrySet()) {
             IntPair pair;

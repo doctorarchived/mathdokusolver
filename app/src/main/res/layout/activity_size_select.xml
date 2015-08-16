@@ -1,11 +1,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="fill_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:layout_height="match_parent" android:paddingStart="@dimen/activity_horizontal_margin"
+    android:paddingEnd="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:screenOrientation="portrait"
-    tools:context="com.bradym.android.kenkensolver.SizeSelect">
+    tools:context="com.bradym.android.mathdokusolver.SizeSelect">
 
     <RelativeLayout
         android:layout_width="fill_parent"
@@ -78,7 +78,7 @@
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="SUDOKU"
+            android:text="@string/SUDOKU"
             android:tag="0"
             android:id="@+id/buttonSudoku"
             android:onClick="switchToGrid"
