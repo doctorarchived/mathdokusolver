@@ -12,11 +12,10 @@ import java.util.Collection;
  * cumulative max/min.
  */
 
-
 public abstract class ArithmeticConstraint extends Constraint {
 
-    final int constraint;
-    final int identity;
+    protected final int constraint;
+    protected final int identity;
 
     private int cumulativeMax;
     private int cumulativeMin;

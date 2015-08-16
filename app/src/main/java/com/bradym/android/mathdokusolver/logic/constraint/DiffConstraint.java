@@ -8,10 +8,8 @@ import java.util.Collection;
 
 public final class DiffConstraint extends Constraint {
 
-    //final BitSet bitSet;
     private int placed;
     private int[] remaining;
-
 
     /*
     We use the following assumptions:
@@ -21,8 +19,6 @@ public final class DiffConstraint extends Constraint {
      */
     public DiffConstraint(Collection<Variable> scope) {
         super(scope);
-        //bitSet = new BitSet(maxNum);
-        //bitSet.set(0, maxNum);
         placed = 0;
         remaining = new int[scope.size()];
         for (Variable v : scope) {

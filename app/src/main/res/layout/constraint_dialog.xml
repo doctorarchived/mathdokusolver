@@ -48,7 +48,7 @@
             android:layout_column="2"
             android:layout_weight="1"
             android:layout_gravity="center_vertical"
-            android:src="@mipmap/ic_launcher"
+            android:src="@mipmap/backspace"
             android:hapticFeedbackEnabled="true"
             android:contentDescription="@string/BACKSPACE"
             />

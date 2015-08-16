@@ -11,9 +11,10 @@ import java.util.HashSet;
  */
 public abstract class Constraint {
 
-    public final HashSet<Variable> scope;
     private boolean enabled = false;
+
     public boolean bordered = true;
+    public final HashSet<Variable> scope;
 
     Constraint(Collection<Variable> scope) {
         this.scope = new HashSet<>(scope.size());
@@ -59,6 +60,7 @@ public abstract class Constraint {
 
     protected abstract void onRestoredDomain(Variable var, Variable.Domain oldDomain);
 
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("[ ");

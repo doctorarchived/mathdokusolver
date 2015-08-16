@@ -56,7 +56,7 @@ public class PuzzleActivity extends AppCompatActivity implements ConstraintDialo
         PlusConstraint.op = getString(R.string.plus);
         DivConstraint.op = getString(R.string.div);
 
-        setContentView(R.layout.true_activity);
+        setContentView(R.layout.puzzle_activity);
         puzzleGrid = (PuzzleGrid) findViewById(R.id.trueGrid);
 
         Intent intent = getIntent();

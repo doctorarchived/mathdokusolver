@@ -35,7 +35,7 @@ public abstract class CommutativeConstraint extends ArithmeticConstraint {
         currentValue = op(currentValue, identity, var.value());
     }
 
-    int getCurrentValue() {
+    protected int getCurrentValue() {
         return currentValue;
     }
 

@@ -73,7 +73,7 @@ public class ConstraintDialog extends DialogFragment implements View.OnClickList
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Select the constraint");
 
-        View inflated = View.inflate(getActivity(), R.layout.true_dialog, null);
+        View inflated = View.inflate(getActivity(), R.layout.constraint_dialog, null);
 
         field = (TextView) inflated.findViewById(R.id.dialogTextView);
         inflated.findViewById(R.id.dialogButton0).setOnClickListener(this);
