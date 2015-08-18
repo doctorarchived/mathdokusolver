@@ -1,6 +1,6 @@
-package com.bradym.android.mathdokusolver.logic.constraint;
+package com.bradym.android.mathdokusolverplus.logic.constraint;
 
-import com.bradym.android.mathdokusolver.logic.Variable;
+import com.bradym.android.mathdokusolverplus.logic.Variable;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -48,13 +48,13 @@ public abstract class Constraint {
      */
     protected abstract boolean onValidate(Variable var, int value);
     /*
-    Take care of bookkeeping when a variable has been assigned a value
+    Take care of bookkeeping when a variable is going to be assigned a value
      */
-    protected abstract void onAssignment(Variable var, Variable.Domain oldDomain);
+    protected abstract void onAssignment(Variable var, int value);
     /*
     Take care of bookkeeping when a variable has been unassigned
      */
-    protected abstract void onPopAssignment(Variable var, Variable.Domain oldDomain);
+    protected abstract void onPopAssignment(Variable var, int value);
 
     protected abstract void onDomainPruning(Variable var, int value);
 
@@ -78,12 +78,12 @@ public abstract class Constraint {
         return onValidate(var, value);
     }
 
-    public final void updateAssignment(Variable var, Variable.Domain oldDomain) {
-        onAssignment(var, oldDomain);
+    public final void updateAssignment(Variable var, int value) {
+        onAssignment(var, value);
     }
 
-    public final void popAssignment(Variable var, Variable.Domain oldDomain) {
-        onPopAssignment(var, oldDomain);
+    public final void popAssignment(Variable var, int value) {
+        onPopAssignment(var, value);
     }
 
     public final void updateRestoredDomain(Variable var, Variable.Domain oldDomain) {

@@ -1,6 +1,6 @@
-package com.bradym.android.mathdokusolver.logic.constraint;
+package com.bradym.android.mathdokusolverplus.logic.constraint;
 
-import com.bradym.android.mathdokusolver.logic.Variable;
+import com.bradym.android.mathdokusolverplus.logic.Variable;
 
 import java.util.Collection;
 

@@ -1,4 +1,4 @@
-package com.bradym.android.mathdokusolver;
+package com.bradym.android.mathdokusolverplus;
 
 /**
  * Enum for various puzzle types

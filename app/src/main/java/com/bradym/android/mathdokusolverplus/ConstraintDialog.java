@@ -1,4 +1,4 @@
-package com.bradym.android.mathdokusolver;
+package com.bradym.android.mathdokusolverplus;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -13,12 +13,13 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.bradym.android.mathdokusolver.logic.Variable;
-import com.bradym.android.mathdokusolver.logic.constraint.Constraint;
-import com.bradym.android.mathdokusolver.logic.constraint.DivConstraint;
-import com.bradym.android.mathdokusolver.logic.constraint.MinusConstraint;
-import com.bradym.android.mathdokusolver.logic.constraint.PlusConstraint;
-import com.bradym.android.mathdokusolver.logic.constraint.ProductConstraint;
+import com.bradym.android.mathdokusolverplus.logic.Variable;
+import com.bradym.android.mathdokusolverplus.logic.constraint.Constraint;
+import com.bradym.android.mathdokusolverplus.logic.constraint.DivConstraint;
+import com.bradym.android.mathdokusolverplus.logic.constraint.MinusConstraint;
+import com.bradym.android.mathdokusolverplus.logic.constraint.PlusConstraint;
+import com.bradym.android.mathdokusolverplus.logic.constraint.ProductConstraint;
+import com.bradym.android.mathdokusolverplus.logic.constraint.WildcardConstraint;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -46,6 +47,7 @@ public class ConstraintDialog extends DialogFragment implements View.OnClickList
     private Button minusButton;
     private Button timesButton;
     private Button divButton;
+    private Button wildButton;
 
     private Constraint prevConstraint;
     private State newState = null;
@@ -92,7 +94,6 @@ public class ConstraintDialog extends DialogFragment implements View.OnClickList
         plusButton = (Button) inflated.findViewById(R.id.dialogButtonPlus);
         plusButton.setOnClickListener(this);
 
-
         timesButton = (Button) inflated.findViewById(R.id.dialogButtonTimes);
         timesButton.setOnClickListener(this);
 
@@ -102,6 +103,9 @@ public class ConstraintDialog extends DialogFragment implements View.OnClickList
         divButton = (Button) inflated.findViewById(R.id.dialogButtonDiv);
         divButton.setOnClickListener(this);
 
+        wildButton = (Button) inflated.findViewById(R.id.dialogButtonWild);
+        wildButton.setOnClickListener(this);
+
         ImageButton trashButton = (ImageButton) inflated.findViewById(R.id.deleteButton);
         trashButton.setOnClickListener(this);
 
@@ -110,8 +114,9 @@ public class ConstraintDialog extends DialogFragment implements View.OnClickList
             timesButton.setVisibility(View.GONE);
             minusButton.setVisibility(View.GONE);
             divButton.setVisibility(View.GONE);
+            wildButton.setVisibility(View.GONE);
         } else {
-            adjustButtons(false, plusButton, timesButton, divButton, minusButton);
+            adjustButtons(false, plusButton, timesButton, divButton, minusButton, wildButton);
         }
 
         if (newState.getAction() != State.EDIT_CONSTRAINT) {
@@ -180,10 +185,11 @@ public class ConstraintDialog extends DialogFragment implements View.OnClickList
                             newState.addConstraints(constraint);
                             trueListener.onPositiveClick(newState);
                             dismiss();
+                        } else {
+                            adjustButtons(true, plusButton);
                         }
-                        adjustButtons(true, plusButton);
                     } else if (scope.size() > 1) {
-                        adjustButtons(true, plusButton, timesButton, divButton, minusButton);
+                        adjustButtons(true, plusButton, timesButton, divButton, minusButton, wildButton);
                     }
                 }
                 break;
@@ -220,6 +226,13 @@ public class ConstraintDialog extends DialogFragment implements View.OnClickList
                 trueListener.onPositiveClick(newState);
                 dismiss();
                 break;
+            case R.id.dialogButtonWild:
+                constraint = new WildcardConstraint(scope, Integer.parseInt(buffer));
+                newState.addConstraints(constraint);
+                trueListener.onPositiveClick(newState);
+                dismiss();
+                break;
+
             case R.id.deleteButton:
                 newState.setAction(State.DELETE_CONSTRAINT);
                 trueListener.onPositiveClick(newState);

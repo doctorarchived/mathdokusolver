@@ -1,6 +1,6 @@
-package com.bradym.android.mathdokusolver.logic.constraint;
+package com.bradym.android.mathdokusolverplus.logic.constraint;
 
-import com.bradym.android.mathdokusolver.logic.Variable;
+import com.bradym.android.mathdokusolverplus.logic.Variable;
 
 import java.util.Collection;
 
@@ -24,15 +24,15 @@ public abstract class CommutativeConstraint extends ArithmeticConstraint {
     }
 
     @Override
-    protected void onPopAssignment(Variable var, Variable.Domain oldDomain) {
-        super.onPopAssignment(var, oldDomain);
-        currentValue = op(currentValue, oldDomain.value, identity);
+    protected void onPopAssignment(Variable var, int value) {
+        super.onPopAssignment(var, value);
+        currentValue = op(currentValue, value, identity);
     }
 
     @Override
-    protected void onAssignment(Variable var, Variable.Domain oldDomain) {
-        super.onAssignment(var, oldDomain);
-        currentValue = op(currentValue, identity, var.value());
+    protected void onAssignment(Variable var, int value) {
+        super.onAssignment(var, value);
+        currentValue = op(currentValue, identity, value);
     }
 
     protected int getCurrentValue() {

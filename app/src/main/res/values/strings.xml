@@ -1,20 +1,21 @@
 <resources>
-    <string name="app_name">Mathdoku Solver</string>
-
-    <string name="action_settings">Settings</string>
-
+    <string name="app_name">Sudoku Solver Plus</string>
 
     <string name="plus">\u002B</string>
     <string name="times">\u00D7</string>
     <string name="div">\u00F7</string>
     <string name="minus">\u2212</string>
+    <string name="wild">\u003F</string>
 
+    <string name="x3">3 x 3</string>
     <string name="x4">4 x 4</string>
     <string name="x5">5 x 5</string>
     <string name="x6">6 x 6</string>
     <string name="x7">7 x 7</string>
     <string name="x8">8 x 8</string>
     <string name="x9">9 x 9</string>
+
+    <string name="MATHDOKU">MATHDOKU</string>
     <string name="SUDOKU">SUDOKU</string>
 
     <string name="UNDO">UNDO</string>
@@ -25,8 +26,8 @@
     <string name="DELETE">DELETE</string>
 
 
-
-    <string name="GRID_SELECT">Select Grid Size</string>
+    <string name="PUZZLE_SELECT">Select Puzzle</string>
+    <string name="GRID_SELECT">Select Mathdoku Grid Size</string>
 
     <string name="one">1</string>
     <string name="two">2</string>

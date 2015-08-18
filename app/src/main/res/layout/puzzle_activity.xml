@@ -4,7 +4,7 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
 
 
-    <com.bradym.android.mathdokusolver.PuzzleGrid
+    <com.bradym.android.mathdokusolverplus.PuzzleGrid
 
         android:layout_height="match_parent"
         android:layout_width="match_parent"
@@ -21,12 +21,10 @@
         android:padding="3dp"
 
         android:background="@drawable/border"
-
-
         >
 
 
-    </com.bradym.android.mathdokusolver.PuzzleGrid>
+    </com.bradym.android.mathdokusolverplus.PuzzleGrid>
 
     <ImageButton
         android:layout_width="wrap_content"

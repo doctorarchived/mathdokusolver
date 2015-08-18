@@ -1,7 +1,7 @@
-package com.bradym.android.mathdokusolver.logic;
+package com.bradym.android.mathdokusolverplus.logic;
 
-import com.bradym.android.mathdokusolver.PuzzleType;
-import com.bradym.android.mathdokusolver.logic.constraint.Constraint;
+import com.bradym.android.mathdokusolverplus.PuzzleType;
+import com.bradym.android.mathdokusolverplus.logic.constraint.Constraint;
 import com.google.common.collect.ForwardingQueue;
 
 import java.util.ArrayDeque;

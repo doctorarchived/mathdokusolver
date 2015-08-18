@@ -1,4 +1,4 @@
-package com.bradym.android.mathdokusolver;
+package com.bradym.android.mathdokusolverplus;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,14 +9,14 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.bradym.android.mathdokusolver.logic.GACSolver;
-import com.bradym.android.mathdokusolver.logic.Variable;
-import com.bradym.android.mathdokusolver.logic.constraint.Constraint;
-import com.bradym.android.mathdokusolver.logic.constraint.DiffConstraint;
-import com.bradym.android.mathdokusolver.logic.constraint.DivConstraint;
-import com.bradym.android.mathdokusolver.logic.constraint.MinusConstraint;
-import com.bradym.android.mathdokusolver.logic.constraint.PlusConstraint;
-import com.bradym.android.mathdokusolver.logic.constraint.ProductConstraint;
+import com.bradym.android.mathdokusolverplus.logic.GACSolver;
+import com.bradym.android.mathdokusolverplus.logic.Variable;
+import com.bradym.android.mathdokusolverplus.logic.constraint.Constraint;
+import com.bradym.android.mathdokusolverplus.logic.constraint.DiffConstraint;
+import com.bradym.android.mathdokusolverplus.logic.constraint.DivConstraint;
+import com.bradym.android.mathdokusolverplus.logic.constraint.MinusConstraint;
+import com.bradym.android.mathdokusolverplus.logic.constraint.PlusConstraint;
+import com.bradym.android.mathdokusolverplus.logic.constraint.ProductConstraint;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -58,24 +58,25 @@ public class PuzzleActivity extends AppCompatActivity implements ConstraintDialo
 
         setContentView(R.layout.puzzle_activity);
         puzzleGrid = (PuzzleGrid) findViewById(R.id.trueGrid);
-
         Intent intent = getIntent();
-        num_col = intent.getIntExtra("size", num_col);
 
-        int secret = -1;
-        if (num_col >= 420) {
-            secret = num_col - 420;
-            if (num_col == 425) {
-                num_col = 4;
-            } else {
-                num_col = 9;
-            }
-        } else if (num_col == 0) {
-            num_col = 9;
+        if (intent.getStringExtra("puzzle").equals("sudoku")) {
             mode = PuzzleType.SUDOKU;
-            puzzleGrid.setPuzzle(PuzzleType.SUDOKU);
+        } else if (intent.getStringExtra("puzzle").equals("kenken")) {
+            mode = PuzzleType.KENKEN;
         }
 
+        puzzleGrid.setPuzzle(mode);
+        int secret = -1;
+        if (mode == PuzzleType.SUDOKU) {
+            num_col = 9;
+        } else if (mode == PuzzleType.KENKEN) {
+            if ((secret=intent.getIntExtra("secret", -1)) != -1) {
+                num_col = 9;
+            } else {
+                num_col = intent.getIntExtra("size", num_col);
+            }
+        }
 
         solverButton = (ImageButton) findViewById(R.id.solveButton);
         undoButton = (ImageButton) findViewById(R.id.undoButton);
@@ -132,7 +133,6 @@ public class PuzzleActivity extends AppCompatActivity implements ConstraintDialo
 
 
         adjustButtons(false, undoButton, redoButton, solverButton, clearButton);
-        checkSolverButton();
 
         if (secret != -1) {
             if (secret == 0) secret();
@@ -141,8 +141,9 @@ public class PuzzleActivity extends AppCompatActivity implements ConstraintDialo
             else if (secret == 3) secret4();
             else if (secret == 4) secret5();
             else if (secret == 5) secret6();
-            checkSolverButton();
         }
+        checkSolverButton();
+
 
     }
 

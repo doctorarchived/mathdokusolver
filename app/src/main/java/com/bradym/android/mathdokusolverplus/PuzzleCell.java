@@ -1,4 +1,4 @@
-package com.bradym.android.mathdokusolver;
+package com.bradym.android.mathdokusolverplus;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -8,7 +8,7 @@ import android.util.AttributeSet;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.bradym.android.mathdokusolver.logic.Variable;
+import com.bradym.android.mathdokusolverplus.logic.Variable;
 
 /**
  * Created by Michael on 6/16/2015.

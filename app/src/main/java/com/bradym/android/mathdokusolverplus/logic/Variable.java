@@ -1,7 +1,7 @@
-package com.bradym.android.mathdokusolver.logic;
+package com.bradym.android.mathdokusolverplus.logic;
 
-import com.bradym.android.mathdokusolver.PuzzleCell;
-import com.bradym.android.mathdokusolver.logic.constraint.Constraint;
+import com.bradym.android.mathdokusolverplus.PuzzleCell;
+import com.bradym.android.mathdokusolverplus.logic.constraint.Constraint;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -76,12 +76,13 @@ public final class Variable {
             }
         }
         if (valid) {
+            for (Constraint constraint : constraints) {
+                constraint.updateAssignment(this, val);
+            }
             domainHistory.addLast(domain);
             domain = new Domain(1 << (val - 1));
             domain.value = val;
-            for (Constraint constraint : constraints) {
-                constraint.updateAssignment(this, domainHistory.peekLast());
-            }
+
         }
         return valid;
     }
@@ -90,7 +91,7 @@ public final class Variable {
         Domain oldDomain = domain;
         domain = domainHistory.pollLast();
         for (Constraint constraint : constraints) {
-            constraint.popAssignment(this, oldDomain);
+            constraint.popAssignment(this, oldDomain.value);
         }
     }
 

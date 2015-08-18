@@ -1,6 +1,6 @@
-package com.bradym.android.mathdokusolver.logic.constraint;
+package com.bradym.android.mathdokusolverplus.logic.constraint;
 
-import com.bradym.android.mathdokusolver.logic.Variable;
+import com.bradym.android.mathdokusolverplus.logic.Variable;
 
 import java.util.Collection;
 
@@ -45,13 +45,13 @@ public abstract class ArithmeticConstraint extends Constraint {
 
 
     @Override
-    protected void onAssignment(Variable var, Variable.Domain oldDomain) {
-        cumulativeMax = op(cumulativeMax, oldDomain.max, identity);
-        cumulativeMin = op(cumulativeMin, oldDomain.min, identity);
+    protected void onAssignment(Variable var, int value) {
+        cumulativeMax = op(cumulativeMax, var.max(), identity);
+        cumulativeMin = op(cumulativeMin, var.min(), identity);
     }
 
     @Override
-    protected void onPopAssignment(Variable var, Variable.Domain oldDomain) {
+    protected void onPopAssignment(Variable var, int value) {
         cumulativeMax = op(cumulativeMax, identity, var.max());
         cumulativeMin = op(cumulativeMin, identity, var.min());
     }

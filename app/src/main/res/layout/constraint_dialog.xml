@@ -226,6 +226,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginBottom="8dp"
         android:gravity="end"
+        android:id="@+id/buttonRow1"
         >
 
         <Button
@@ -286,5 +287,27 @@
             android:hapticFeedbackEnabled="true"
             />
     </LinearLayout>
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_below="@+id/buttonRow1"
+        android:layout_marginBottom="8dp"
+        android:gravity="end"
+        >
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:minWidth="64dp"
+            android:text="@string/wild"
+            android:id="@+id/dialogButtonWild"
+            android:textSize="32sp"
+            android:background="?android:attr/selectableItemBackground"
+            android:textColor="@color/material_deep_teal_500"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:hapticFeedbackEnabled="true"
+            />
+    </LinearLayout>
 </RelativeLayout>

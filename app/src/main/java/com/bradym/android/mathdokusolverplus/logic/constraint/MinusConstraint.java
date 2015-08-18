@@ -1,6 +1,6 @@
-package com.bradym.android.mathdokusolver.logic.constraint;
+package com.bradym.android.mathdokusolverplus.logic.constraint;
 
-import com.bradym.android.mathdokusolver.logic.Variable;
+import com.bradym.android.mathdokusolverplus.logic.Variable;
 
 import java.util.Collection;
 import java.util.Map;
@@ -18,7 +18,7 @@ public class MinusConstraint extends InverseConstraint {
     }
 
     @Override
-    protected IntPair onValidateEntry(Variable var, int value, Map.Entry<Variable, IntPair> entry) {
+    protected IntPair onValidateEntry(Variable var, int value, Map.Entry<Variable, IntPair> entry, boolean adjusted) {
         IntPair currentValue = entry.getValue();
         Variable top = entry.getKey();
         int num = currentValue.first;
@@ -26,7 +26,7 @@ public class MinusConstraint extends InverseConstraint {
         int adjustedCumMin = getCumulativeMin();
         int adjustedCumMax = getCumulativeMax();
 
-        if (var.value() == -1) {
+        if (!adjusted) {
             adjustedCumMin -= var.min();
             adjustedCumMax -= var.max();
         }

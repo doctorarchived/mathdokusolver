@@ -5,7 +5,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:screenOrientation="portrait"
-    tools:context="com.bradym.android.mathdokusolver.SizeSelect">
+    tools:context="com.bradym.android.mathdokusolverplus.PuzzleSelect">
 
     <RelativeLayout
         android:layout_width="fill_parent"
@@ -18,71 +18,19 @@
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/x4"
-            android:tag="4"
+            android:text="@string/MATHDOKU"
             android:id="@+id/button4x4"
             android:layout_alignParentTop="true"
-            android:onClick="switchToGrid"
-            android:layout_centerHorizontal="true" />
-
-        <Button
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/x5"
-            android:tag="5"
-            android:id="@+id/button5x5"
-            android:onClick="switchToGrid"
-            android:layout_below="@+id/button4x4"
-            android:layout_centerHorizontal="true" />
-
-        <Button
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/x6"
-            android:tag="6"
-            android:id="@+id/button6x6"
-            android:onClick="switchToGrid"
-            android:layout_below="@+id/button5x5"
-            android:layout_centerHorizontal="true" />
-
-        <Button
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/x7"
-            android:tag="7"
-            android:id="@+id/button7x7"
-            android:onClick="switchToGrid"
-            android:layout_below="@+id/button6x6"
-            android:layout_centerHorizontal="true" />
-
-        <Button
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/x8"
-            android:tag="8"
-            android:id="@+id/button8x8"
-            android:onClick="switchToGrid"
-            android:layout_below="@+id/button7x7"
-            android:layout_centerHorizontal="true" />
-
-        <Button
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/x9"
-            android:tag="9"
-            android:id="@+id/button9x9"
-            android:onClick="switchToGrid"
-            android:layout_below="@+id/button8x8"
+            android:onClick="kenkenSizeSelect"
             android:layout_centerHorizontal="true" />
 
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/SUDOKU"
-            android:tag="0"
             android:id="@+id/buttonSudoku"
-            android:onClick="switchToGrid"
-            android:layout_below="@+id/button9x9"
+            android:onClick="sudokuSelect"
+            android:layout_below="@+id/button4x4"
             android:layout_centerHorizontal="true" />
 
         <LinearLayout
@@ -99,9 +47,8 @@
                 android:layout_weight="1"
                 android:text="JET"
                 android:textSize="13sp"
-                android:tag="420"
                 android:id="@+id/buttonSecret1"
-                android:onClick="switchToGrid"
+                android:onClick="debug"
                 />
 
             <Button
@@ -110,9 +57,8 @@
                 android:layout_weight="1"
                 android:text="FUEL"
                 android:textSize="13sp"
-                android:tag="421"
                 android:id="@+id/buttonSecret2"
-                android:onClick="switchToGrid" />
+                android:onClick="debug" />
 
             <Button
                 android:layout_width="0dp"
@@ -120,9 +66,8 @@
                 android:layout_weight="1"
                 android:text="MELTS"
                 android:textSize="13sp"
-                android:tag="422"
                 android:id="@+id/buttonSecret3"
-                android:onClick="switchToGrid" />
+                android:onClick="debug" />
 
             <Button
                 android:layout_width="0dp"
@@ -130,9 +75,8 @@
                 android:layout_weight="1"
                 android:text="STEEL"
                 android:textSize="13sp"
-                android:tag="423"
                 android:id="@+id/buttonSecret4"
-                android:onClick="switchToGrid" />
+                android:onClick="debug" />
 
             <Button
                 android:layout_width="0dp"
@@ -140,26 +84,17 @@
                 android:layout_weight="1"
                 android:text="BEAMS"
                 android:textSize="13sp"
-                android:tag="424"
                 android:id="@+id/buttonSecret5"
-                android:onClick="switchToGrid" />
-
-
-
+                android:onClick="debug" />
 
         </LinearLayout>
-
-
-
-
-
     </RelativeLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/GRID_SELECT"
+        android:text="@string/PUZZLE_SELECT"
         android:id="@+id/textView"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />

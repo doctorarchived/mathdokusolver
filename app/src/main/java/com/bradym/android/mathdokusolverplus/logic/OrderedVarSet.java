@@ -1,4 +1,4 @@
-package com.bradym.android.mathdokusolver.logic;
+package com.bradym.android.mathdokusolverplus.logic;
 
 import java.util.ArrayList;
 import java.util.HashMap;

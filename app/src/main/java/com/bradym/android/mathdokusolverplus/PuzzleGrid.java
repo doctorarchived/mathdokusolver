@@ -1,4 +1,4 @@
-package com.bradym.android.mathdokusolver;
+package com.bradym.android.mathdokusolverplus;
 
 import android.app.Activity;
 import android.app.FragmentManager;
@@ -9,8 +9,8 @@ import android.support.v7.widget.GridLayout;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
-import com.bradym.android.mathdokusolver.logic.Variable;
-import com.bradym.android.mathdokusolver.logic.constraint.Constraint;
+import com.bradym.android.mathdokusolverplus.logic.Variable;
+import com.bradym.android.mathdokusolverplus.logic.constraint.Constraint;
 
 import java.util.ArrayList;
 import java.util.HashSet;

@@ -1,6 +1,6 @@
-package com.bradym.android.mathdokusolver.logic.constraint;
+package com.bradym.android.mathdokusolverplus.logic.constraint;
 
-import com.bradym.android.mathdokusolver.logic.Variable;
+import com.bradym.android.mathdokusolverplus.logic.Variable;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -59,16 +59,16 @@ public final class DiffConstraint extends Constraint {
     }
 
     @Override
-    protected void onAssignment(Variable var, Variable.Domain oldDomain) {
-        placed |= var.domain.domain;
-        for (int i = oldDomain.nextValid(0); i != -1; i = oldDomain.nextValid(i+1)) {
+    protected void onAssignment(Variable var, int value) {
+        placed |= (1 << (value - 1));
+        for (int i = var.nextValid(0); i != -1; i = var.nextValid(i+1)) {
             remaining[i]--;
         }
     }
 
     @Override
-    protected void onPopAssignment(Variable var, Variable.Domain oldDomain) {
-        placed ^= oldDomain.domain;
+    protected void onPopAssignment(Variable var, int value) {
+        placed ^= (1 << (value - 1));
         for (int i = var.nextValid(0); i != -1; i = var.nextValid(i+1)) {
             remaining[i]++;
         }

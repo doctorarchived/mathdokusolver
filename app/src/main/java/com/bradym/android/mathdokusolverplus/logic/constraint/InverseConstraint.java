@@ -1,6 +1,6 @@
-package com.bradym.android.mathdokusolver.logic.constraint;
+package com.bradym.android.mathdokusolverplus.logic.constraint;
 
-import com.bradym.android.mathdokusolver.logic.Variable;
+import com.bradym.android.mathdokusolverplus.logic.Variable;
 
 import java.util.ArrayDeque;
 import java.util.Collection;
@@ -47,7 +47,7 @@ public abstract class InverseConstraint extends ArithmeticConstraint {
     protected final boolean onValidate(Variable var, int value) {
         boolean valid = false;
         for (Map.Entry<Variable, IntPair> entry : currentValues.entrySet()) {
-           if (onValidateEntry(var, value, entry) != null) {
+           if (onValidateEntry(var, value, entry, false) != null) {
                valid = true;
                break;
            }
@@ -56,18 +56,18 @@ public abstract class InverseConstraint extends ArithmeticConstraint {
     }
 
 
-    protected abstract IntPair onValidateEntry(Variable var, int value, Map.Entry<Variable, IntPair> entry);
+    protected abstract IntPair onValidateEntry(Variable var, int value, Map.Entry<Variable, IntPair> entry, boolean adjusted);
 
     @Override
-    public void onAssignment(Variable var, Variable.Domain oldDomain) {
-        super.onAssignment(var, oldDomain);
+    public void onAssignment(Variable var, int value) {
+        super.onAssignment(var, value);
         valuesHistory.addLast(currentValues);
-        currentValues = updateCurrentValue(var, var.value());
+        currentValues = updateCurrentValue(var, value);
     }
 
     @Override
-    public void onPopAssignment(Variable var, Variable.Domain oldDomain) {
-        super.onPopAssignment(var, oldDomain);
+    public void onPopAssignment(Variable var, int value) {
+        super.onPopAssignment(var, value);
         this.currentValues = valuesHistory.pollLast();
     }
 
@@ -80,7 +80,7 @@ public abstract class InverseConstraint extends ArithmeticConstraint {
         Map<Variable, IntPair> newMap = new HashMap<>();
         for (Map.Entry<Variable, IntPair> entry : currentValues.entrySet()) {
             IntPair pair;
-            if ((pair=onValidateEntry(var, value, entry)) != null) {
+            if ((pair=onValidateEntry(var, value, entry, true)) != null) {
                 newMap.put(entry.getKey(), pair);
             }
         }

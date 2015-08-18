@@ -1,10 +1,10 @@
-package com.bradym.android.mathdokusolver;
+package com.bradym.android.mathdokusolverplus;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 
-import com.bradym.android.mathdokusolver.logic.GACSolver;
+import com.bradym.android.mathdokusolverplus.logic.GACSolver;
 
 /**
  * Created by Michael on 5/14/2015.
