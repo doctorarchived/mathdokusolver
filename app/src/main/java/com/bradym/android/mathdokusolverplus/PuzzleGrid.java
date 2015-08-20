@@ -106,22 +106,26 @@ public class PuzzleGrid extends GridLayout {
                     PuzzleCell cell = (PuzzleCell) getChildAt(i);
                     Rect rect = new Rect();
                     cell.getHitRect(rect);
-                    if (rect.contains((int) event.getX(), (int) event.getY())) {
+                    if (selected.isEmpty() && rect.contains((int) event.getX(), (int) event.getY())) {
                         Variable var = cell.getVariable();
                         if ((puzzle == PuzzleType.KENKEN && var.constraints.size() == 2) ||
                                 (puzzle == PuzzleType.SUDOKU && var.constraints.size() == 3)) {
                             selectionMode = SELECTION.CELL;
                             selected.add(cell);
                             cell.select();
-                        } else if ((puzzle == PuzzleType.KENKEN) ||
-                                (puzzle == PuzzleType.SUDOKU && var.constraints.size() == 4)) {
+                        } else if (puzzle == PuzzleType.KENKEN && var.constraints.size() == 3)  {
                             selectionMode = SELECTION.CONSTRAINT;
                             selectedConstraint = var.constraints.get(2);
                             for (Variable tv : selectedConstraint.scope) {
                                 tv.cell.select();
                             }
+                        } else if (puzzle == PuzzleType.SUDOKU && var.constraints.size() == 4) {
+                            selectionMode = SELECTION.CONSTRAINT;
+                            selectedConstraint = var.constraints.get(3);
+                            for (Variable tv : selectedConstraint.scope) {
+                                tv.cell.select();
+                            }
                         }
-
                     return true;
                     }
                 }
@@ -151,7 +155,6 @@ public class PuzzleGrid extends GridLayout {
                 return true;
         }
         return false;
-
     }
 
     public HashSet<Constraint> getActiveConstraints() {
@@ -207,10 +210,9 @@ public class PuzzleGrid extends GridLayout {
         if (min != null) {
             min.setConstraintString(constraint.cellString());
         }
-
     }
 
-    public void addConstraint(Constraint constraint) {
+    public void addConstraint(Constraint constraint)  {
         addConstraint(constraint, true);
     }
 
@@ -222,7 +224,6 @@ public class PuzzleGrid extends GridLayout {
             PuzzleCell cell = tv.cell;
             if (constraint.bordered) cell.resetBorders();
             cell.setConstraintString("");
-            cell.invalidate();
         }
     }
 

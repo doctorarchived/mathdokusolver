@@ -110,7 +110,6 @@ public class ConstraintDialog extends DialogFragment implements View.OnClickList
         trashButton.setOnClickListener(this);
 
         if (mode == PuzzleType.SUDOKU) {
-            plusButton.setVisibility(View.GONE);
             timesButton.setVisibility(View.GONE);
             minusButton.setVisibility(View.GONE);
             divButton.setVisibility(View.GONE);

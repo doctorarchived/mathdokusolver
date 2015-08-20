@@ -476,14 +476,11 @@ public class PuzzleActivity extends AppCompatActivity implements ConstraintDialo
         v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
 
         State state = new State(State.DELETE_CONSTRAINT);
-
         fullReset();
+
         //Gets around concurrent modification exception
         for (Constraint tc : new ArrayList<>(puzzleGrid.getActiveConstraints())) {
             state.addConstraints(tc);
-            for (Variable tv : tc.scope) {
-                tv.cell.refreshValue();
-            }
             puzzleGrid.deleteConstraint(tc);
         }
 
@@ -550,6 +547,7 @@ public class PuzzleActivity extends AppCompatActivity implements ConstraintDialo
 
     private void fullReset() {
         Set<Constraint> reset = new HashSet<>();
+
         for (Variable variable : variables) {
             variable.reset();
             variable.cell.refreshValue();

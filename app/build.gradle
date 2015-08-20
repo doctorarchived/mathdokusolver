@@ -4,7 +4,7 @@ android {
     compileSdkVersion 22
     buildToolsVersion "21.1.2"
     defaultConfig {
-        applicationId "com.bradym.android.mathdokusolver"
+        applicationId "com.bradym.android.mathdokusolverplus"
         minSdkVersion 17
         targetSdkVersion 22
         versionCode 2

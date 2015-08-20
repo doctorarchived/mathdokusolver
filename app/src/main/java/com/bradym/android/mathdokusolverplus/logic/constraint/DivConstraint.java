@@ -40,6 +40,7 @@ public class DivConstraint extends InverseConstraint {
             adjustedCumMin /= var.min();
             adjustedCumMax /= var.max();
         }
+
         if (var == top) {
             if ((value % constraint == 0) && (value % den == 0)
                     && (value <= constraint * den * adjustedCumMax)

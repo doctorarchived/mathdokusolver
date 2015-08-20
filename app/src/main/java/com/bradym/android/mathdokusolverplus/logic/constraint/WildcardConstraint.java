@@ -29,7 +29,6 @@ public class WildcardConstraint extends Constraint {
         for (Constraint c : possibleConstraints) {
             c.disable();
         }
-
     }
 
     @Override

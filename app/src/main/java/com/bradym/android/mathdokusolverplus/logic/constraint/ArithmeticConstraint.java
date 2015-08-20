@@ -20,12 +20,10 @@ public abstract class ArithmeticConstraint extends Constraint {
     private int cumulativeMax;
     private int cumulativeMin;
 
-    ArithmeticConstraint(Collection<Variable> scope, int constraint, int identity) {
+    public ArithmeticConstraint(Collection<Variable> scope, int constraint, int identity) {
         super(scope);
         this.constraint = constraint;
-        this.identity = identity;
-        this.cumulativeMax = identity;
-        this.cumulativeMin = identity;
+        this.cumulativeMax = this.cumulativeMin = this.identity = identity;
         for (Variable v : scope) {
             cumulativeMax = op(cumulativeMax, identity, v.max());
             cumulativeMin = op(cumulativeMin, identity, v.min());
@@ -35,8 +33,7 @@ public abstract class ArithmeticConstraint extends Constraint {
     @Override
     public void reset() {
         super.reset();
-        this.cumulativeMax = identity;
-        this.cumulativeMin = identity;
+        this.cumulativeMax = this.cumulativeMin = identity;
         for (Variable v : scope) {
             cumulativeMax = op(cumulativeMax, identity, v.max());
             cumulativeMin = op(cumulativeMin, identity, v.min());

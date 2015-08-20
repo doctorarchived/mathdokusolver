@@ -7,14 +7,6 @@
     <string name="minus">\u2212</string>
     <string name="wild">\u003F</string>
 
-    <string name="x3">3 x 3</string>
-    <string name="x4">4 x 4</string>
-    <string name="x5">5 x 5</string>
-    <string name="x6">6 x 6</string>
-    <string name="x7">7 x 7</string>
-    <string name="x8">8 x 8</string>
-    <string name="x9">9 x 9</string>
-
     <string name="MATHDOKU">MATHDOKU</string>
     <string name="SUDOKU">SUDOKU</string>
 

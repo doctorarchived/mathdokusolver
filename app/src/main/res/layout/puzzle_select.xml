@@ -39,6 +39,7 @@
             android:layout_below="@+id/buttonSudoku"
             android:orientation="horizontal"
             android:weightSum="5"
+            android:visibility="gone"
             >
 
             <Button
